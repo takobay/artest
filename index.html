@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チバ・シティ ARプロトタイプ</title>
+    
+    <!-- 1. A-Frame（3D空間を作るためのライブラリ）の読み込み -->
+    <script src="https://aframe.io"></script>
+    
+    <!-- 2. AR.js（カメラ映像を背景にしてAR化するライブラリ）の読み込み -->
+    <script src="https://githack.com"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+
+    <!-- ARの舞台（シーン）を設定。embedded ar でARモードを有効にします -->
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        
+        <!-- 
+            【サイバーパンク・オブジェクトの配置】
+            - position: 画面中央からの位置（X軸, Y軸, Z軸）。-3は「3メートル奥」の意味。
+            - material: 色（color）と、ネオン風に自ら発光する設定（emissive）を指定。
+            - animation: キューブをY軸（垂直方向）に360度ループ回転させる演出。
+        -->
+        <a-box position="0 0.5 -3" 
+               rotation="0 45 0" 
+               width="1" height="1" depth="1"
+               material="color: #00ffff; emissive: #008b8b; roughness: 0.1;"
+               animation="property: rotation; to: 0 405 0; loop: true; dur: 5000; easing: linear">
+        </a-box>
+
+        <!-- スマホのカメラ（視点）の用意 -->
+        
+        
+    </a-scene>
+
+</body>
+</html>
