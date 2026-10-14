@@ -29,9 +29,25 @@
                animation="property: rotation; to: 0 405 0; loop: true; dur: 5000; easing: linear">
         </a-box>
 
+        <!-- 
+            【サイバーパンク・テキストの配置】
+            - value: 表示したい文字。A-Frameの標準機能は半角英数字（英語）のみ対応しています。
+            - position: 立方体（a-box）の少し上（Y軸を1.5）に配置。
+            - align: 文字を中央揃えにします。
+            - color: サイバーパンク・ネオンピンク（#ff007f）を指定。
+            - font: デジタル感のある「monoid」フォントを指定。
+        -->
+        <a-text value="CHIBA-CITY // WARNING" 
+                position="0 1.5 -3" 
+                align="center" 
+                color="#ff007f" 
+                font="monoid"
+                width="6"
+                material="emissive: #ff007f; emissiveIntensity: 1;"
+                animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true; dur: 500;">
+        </a-text>
         <!-- スマホのカメラ（視点）の用意 -->
-        
-        
+                
     </a-scene>
 
 </body>
