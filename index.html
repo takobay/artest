@@ -1,58 +1,36 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>チバ・シティ // 室内電脳レイヤー</title>
+    <title>チバ・シティ ARプロトタイプ</title>
     
-    <!-- A-Frame 最新版の読み込み（WebXR対応） -->
+    <!-- 1. A-Frame（3D空間を作るためのライブラリ）の読み込み -->
     <script src="https://aframe.io"></script>
     
-    <style>
-        body { margin: 0; overflow: hidden; font-family: monospace; }
-        #hud {
-            position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 10;
-            color: #00ffff; background: rgba(0,0,0,0.7); padding: 10px; border: 1px solid #00ffff;
-            font-size: 11px; border-radius: 4px; pointer-events: none; text-align: center;
-        }
-    </style>
+    <!-- 2. AR.js（カメラ映像を背景にしてAR化するライブラリ）の読み込み -->
+    <script src="https://githack.com"></script>
 </head>
-<body>
+<body style="margin: 0; overflow: hidden;">
 
-    <div id="hud">
-        [ROOM SCANNING] 周囲の壁や床にカメラをゆっくり向けてください...
-    </div>
-
-    <!-- 
-        WebXRの空間認識（optionalFeatures: planes）を有効化。
-        これにより、ブラウザに「部屋の平面を検出してくれ」と頼みます。
-    -->
-    <a-scene webxr="optionalFeatures: planes, local-floor;">
+    <!-- ARの舞台（シーン）を設定。embedded ar でARモードを有効にします -->
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
         
         <!-- 
-            【部屋の検出面にグリッドを貼る設定】
-            A-Frameが自動で検知した床や壁（ar-hit-testや平面オブジェクト）に対して、
-            wireframe: true の水色発光素材を適用します。
+            【サイバーパンク・オブジェクトの配置】
+            - position: 画面中央からの位置（X軸, Y軸, Z軸）。-3は「3メートル奥」の意味。
+            - material: 色（color）と、ネオン風に自ら発光する設定（emissive）を指定。
+            - animation: キューブをY軸（垂直方向）に360度ループ回転させる演出。
         -->
+        <a-box position="0 0.5 -3" 
+               rotation="0 45 0" 
+               width="1" height="1" depth="1"
+               material="color: #00ffff; emissive: #008b8b; roughness: 0.1;"
+               animation="property: rotation; to: 0 405 0; loop: true; dur: 5000; easing: linear">
+        </a-box>
+
+        <!-- スマホのカメラ（視点）の用意 -->
         
-        
-
-        <!-- 検出された床や壁の代わりに仮配置するグリッドプレーンの定義 -->
-        <a-plane id="grid-preview" 
-                 rotation="-90 0 0" 
-                 width="10" height="10" 
-                 material="color: #00ffff; wireframe: true; wireframeLinewidth: 3; emissive: #00ffff; emissiveIntensity: 0.8; opacity: 0.7;">
-        </a-plane>
-
-        <!-- サイバーパンクな文字も空間に固定 -->
-        <a-text value="SCANNING INTERNAL MATRIX" 
-                position="0 1.5 -2" 
-                align="center" 
-                color="#ff007f" 
-                width="4"
-                material="emissive: #ff007f;">
-        </a-text>
-
         
     </a-scene>
 
